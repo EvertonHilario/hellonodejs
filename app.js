@@ -1,42 +1,22 @@
-// require da bibliotéca express
-// return function
-var express = require('express');
+//incorpora o módulo de configuração do servidor
+var app = require('./config/server');
 
-// executa a função contida na variável express
-var app = express();
 
-//apoonta o modulo ejs para a enginer de view
-app.set('view engine', 'ejs');
+// SETA O MODULO RESPONSÁVEL POR RENDERIZAR home
+var rotaHome = require('./app/routes/home')(app);
 
-// configura a rota da home
-app.get('/', function(req, res){
+// SETA O MODULO RESPONSÁVEL POR RENDERIZAR noticias
+var rotaNoticias = require('./app/routes/noticias')(app);
 
-	//renderiza o html (home/index.ejs)
-	res.render('home/index');
+// SETA O MODULO RESPONSÁVEL POR RENDERIZAR formulario_inclusao_noticia
+var rotaFormInclusaoNoticias = require('./app/routes/formulario_inclusao_noticia')(app);
 
-});
-
-// configura a rota seção /tecnologia
-app.get('/formulario_inclusao_noticia', function(req, res){
-
-	//renderiza o html (secao/tecnologia.ejs)
-	res.render('admin/form_add_noticia');
-
-});
-
-// configura a rota seção /tecnologia
-app.get('/noticias', function(req, res){
-
-	//renderiza o html (secao/tecnologia.ejs)
-	res.render('noticias/noticias');
-
-});
 
 // soobe e configura o servidor
 // argumento porta int
 // argumento callback function
-app.listen(3000, function(){
+app.listen(3003, function(){
 
-	console.log("Server rodando com express");
+	console.log("Server funcionando");
 
 });
