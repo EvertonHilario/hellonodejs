@@ -7,6 +7,28 @@
 	<body>
 
 		<h1>Notícias</h1>
+		<table>
+			<tr>
+				
+				<td>Id</td>
+				<td>Título</td>
+				<td>Notícia</td>
+
+			</tr>
+			<!-- percorre as notícias -->
+			<% for(var i=0; i < noticias.length; i++){ %>
+
+				<tr>
+					<!-- imprime os dados da notícia -->
+					<td><%= noticias[i].id_noticia; %></td>
+					<td><%= noticias[i].titulo; %></td>
+					<td><%= noticias[i].noticia; %></td>
+
+				</tr>
+
+			<% } %>
+
+		</table>
 
 	</body>
 </html>
