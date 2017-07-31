@@ -1,4 +1,3 @@
-
 module.exports = function(app){
 
 	// configura a rota seção /formulario_inclusao_noticia
