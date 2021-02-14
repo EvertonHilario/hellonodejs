@@ -1,10 +1,11 @@
-// require da bibliotéca express
-// return function
+// require da pacote express
 var express = require('express');
 
-// require da bibliotéca consign
-// return function
+// require da pacote consign
 var consign = require('consign');
+
+// require do middlewar body-parser
+var bodyParser = require('body-parser');
 
 // executa a função contida na variável express
 var app = express();
@@ -14,6 +15,11 @@ app.set('view engine', 'ejs');
 
 //busca as views no diretório view
 app.set('views', './app/views');
+
+//middlewares (devem ser inseridos antes dos includes modulos via consign)
+//os middlewares atua nos objetos de requisição e resposta
+//bodyParser
+app.use(bodyParser.urlencoded({extended : true}));
 
 //neste exemplo é feito o autoloader de modulos
 // executa mtodo consign()
