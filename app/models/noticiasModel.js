@@ -18,6 +18,10 @@ module.exports = function () {
 		connection.query('select * from noticias WHERE id_noticia = 2', callback);
 	}
 
+	this.salvarNoticia = function(noticia, connection, callback){
+		connection.query('INSERT INTO noticias set ? ', noticia, callback);
+	}
+
 	// exporta o módulo
 	// esta instância possibilitará que seja executada as funções dentro do módulo
 	return this;
