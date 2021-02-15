@@ -1,37 +1,13 @@
-module.exports = function(app){
+module.exports = function(application){
 
 	// configura a rota seção /noticias
-	app.get('/noticias', function(req, res){
+	application.get('/noticias', function(req, res){
+		var connection = application.config.dbConnection();
+		var noticiasDAO = new application.app.models.NoticiasDAO(connection);
 
-		/*
-		Nota 1: como o autoload está atribuida a app podemos fazer como se fosse um namespace
-		o consign que possibilita isso
-		*/
-		// executa o método que conecta ao banco
-		var connection = app.config.dbConnection();
-
-		/*
-		Nota 2: models está no autoload do consign
-		*/
-		// instancia noticiasModel
-		var noticiasModel = app.app.models.noticiasModel;
-
-		// executa a função getNoticias que está na model noticiasModel
-		// var connection = conexão com o banco
-		// var callback = função que será executada apoós a consulta
-		// obs ref callback: A função de callbbak neste caso espera dois parâmetros o erro e o resultado.
-		noticiasModel.getNoticias(connection, function(error, result){
-
-			//renderiza o html (noticias/noticias.ejs)
-			// passa como parametro json o resultado da consulta
-			// noticias = result
+		noticiasDAO.getNoticias(function(error, result){
 			res.render('noticias/noticias', {noticias : result});
-
 		})
-
-		
-		
-
 	});
 
 };
