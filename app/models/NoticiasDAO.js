@@ -1,4 +1,3 @@
-
 /**
  * 
  * @param {Object} connection 
